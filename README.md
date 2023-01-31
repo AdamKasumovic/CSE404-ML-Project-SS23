@@ -3,9 +3,9 @@
 This repository houses all code, data, and results related to the CSE 404 ML Project.
 
 The data includes the 
-[link1](https://www.google.com), 
-[link2](https://www.bing.com), 
-...
+[link1](https://www.google.com) dataset, 
+[link2](https://www.bing.com) data, 
+... (fill these in with our data sources)
 
 ## Required Technologies
 
