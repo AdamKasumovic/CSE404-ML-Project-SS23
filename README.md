@@ -3,9 +3,7 @@
 This repository houses all code, data, and results related to the CSE 404 ML Project.
 
 The data includes the 
-[link1](https://www.google.com) dataset, 
-[link2](https://www.bing.com) data, 
-... (fill these in with our data sources)
+[link1](https://www.kaggle.com/datasets/abcsds/pokemon) dataset, although it was manually improved to have the remaining Pokemon stats from Bulbapedia as well as cleaned of erroneous types.
 
 ## Required Technologies
 
