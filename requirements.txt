@@ -3,3 +3,5 @@ sklearn
 scikit-multilearn
 opencv-python
 keras
+torch
+torchvision
