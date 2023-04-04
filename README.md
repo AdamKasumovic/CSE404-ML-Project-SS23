@@ -70,7 +70,7 @@ the stats of Pokemon did poor in classifying its type. We suspect that stats are
 and we are aware from our knowledge of Pokemon that so many Pokemon do not follow the stat "trends" for their type, or have
 some secondary type or ability that skews their stats in a different direction.
 
-For image classification, we initially started out with 1008 images, one for each Pokemon and then tried to use GAN to generate
+For image classification, we initially started out with 1008 images, one for each Pokemon, and then tried to use GAN to generate
 more. GAN did a very bad job doing so, but then we remembered that there is an entire internet of Pokemon images,
 so we increased our dataset to about 7800 images using a Pokemon an additional Pokemon image dataset, which had multiple images of the same Pokemon. Here was the resulting class distribution:
 
