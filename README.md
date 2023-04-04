@@ -80,9 +80,9 @@ This class distribution turned out to be problematic, since everything was being
 However, using a *WeightedRandomSampler* on our image *DataLoaders* fixed this nicely.
 
 Performing any form of validation on the image classifying models was met with very long training times (on the order of days), so we opted
-to settle for Resnet152's incredible train and test performance. Upon seeing what the Resnet152 model (which is included in
-*outputs/*) classifies incorrectly, most of the time we understand why. For instance, a Pokemon might be shaped like a rock
-but not be a Rock type, or there might be a tree in the background of the image, causing a Grass type classification. 
+to settle for Resnet152's incredible train and test performance. Upon seeing what our Resnet152 model (which is included in
+*outputs/* as a Python Pickle file) classifies incorrectly, most of the time we understand why. For instance, a Pokemon might be shaped like a rock
+but not be a Rock type, or there might be a tree in the background of the image, causing an erroneous Grass type classification. 
 
 **Again, more comprehensive results are in the Jupyter notebook, but accuracies are put here for convenience.**
 
