@@ -54,6 +54,7 @@ There are five of us on the team, and consequently there are five models. They a
 2. SVM
 
 **Using Pokemon images:**
+
 3. MLP
 4. CNN
 5. Resnet152
