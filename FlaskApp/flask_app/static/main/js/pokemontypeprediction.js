@@ -7,6 +7,7 @@ function readURL(input) {
         .width(256)
         .height(256)
         .attr("style", "display:block");
+      sessionStorage.setItem("pokemon_image", String(e.target.result));
     };
     reader.readAsDataURL(input.files[0]);
   }

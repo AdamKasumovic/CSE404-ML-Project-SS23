@@ -27,7 +27,7 @@ def pokemontypeprediction():
     return render_template('pokemontypeprediction.html')
 
 
-@app.route('/pokemonclassificationresult', methods = ['POST'])
+@app.route('/pokemonclassificationresult', methods = ['GET', 'POST'])
 def pokemonclassificationresult():
     for filename in os.listdir(app.config['UPLOAD_FOLDER']):
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -51,7 +51,8 @@ def pokemonclassificationresult():
     if file:
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return render_template('pokemonclassificationresult.html', prediction=make_prediction())
+        this_type, this_color = make_prediction()
+        return render_template('pokemonclassificationresult.html', prediction=this_type, type_color=this_color)
 
 @app.route("/static/<path:path>")
 def static_dir(path):
@@ -74,7 +75,10 @@ class CPU_Unpickler(pickle.Unpickler):
 
 def make_prediction():
     with open('flask_app/static/models/resnet_pokemon_image_classifier_model.pkl', 'rb') as file:
-        class_names = ['Bug', 'Dark', 'Dragon', 'Electric', 'Fairy', 'Fighting', 'Fire', 'Flying', 'Ghost', 'Grass', 'Ground', 'Ice', 'Normal', 'Poison', 'Psychic', 'Rock', 'Steel', 'Water']
+        class_names = ['Bug', 'Dark', 'Dragon', 'Electric', 'Fairy', 'Fighting', 'Fire', 'Flying', 'Ghost', 'Grass',
+                       'Ground', 'Ice', 'Normal', 'Poison', 'Psychic', 'Rock', 'Steel', 'Water']
+        colors = ['#94BC4A', '#736C75', '#6A7BAF', '#E5C531', '#E397D1', '#CB5F48', '#EA7A3C', '#7DA6DE', '#846AB6',
+                  '#71C558', '#CC9F4F', '#70CBD4', '#AAB09F', '#B468B7', '#E5709B', '#B2A061', '#89A1B0', '#539AE2']
         resnet152 = CPU_Unpickler(file).load()
         data_dir = app.config['UPLOAD_FOLDER'][:app.config['UPLOAD_FOLDER'].rfind('/')]
 
@@ -83,5 +87,5 @@ def make_prediction():
         X, y = test_data[0]
         y_pred = resnet152(X.to("cpu")[None, ...])
         y_pred = y_pred.argmax(1)
-        return class_names[y_pred]
+        return class_names[y_pred], colors[y_pred]
 
