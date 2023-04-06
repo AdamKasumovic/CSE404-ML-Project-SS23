@@ -1,0 +1,36 @@
+{% extends 'shared/layout.html' %}
+
+{% block metadescription %}
+<meta name="description" content="The input form page for the Pokemon Type Prediction App.">
+{% endblock %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='main/css/pokemontypeprediction.css') }}">
+{% endblock %}
+
+{% block extrajs %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" defer></script>
+    <script src="{{ url_for('static', filename='main/js/pokemontypeprediction.js') }}" defer></script>
+{% endblock %}
+
+{% block mainblock %}
+<main>
+    <div class="header-container">
+        <h1 class="header">
+            <p>
+                Insert a PNG or JPG of a Pokémon image
+            </p>
+            (or just any image for fun)!
+        </h1>
+        <h2 class="header">
+            <p>
+                For best results, use a Generation I Pokémon image
+            </p>
+            at least 256 pixels wide and 256 pixels tall.
+        </h2>
+    </div>
+</main>
+{% endblock %}
+
+{% block footercontent %}
+{% endblock %}

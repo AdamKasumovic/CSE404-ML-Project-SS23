@@ -1,0 +1,11 @@
+/* || Pokemon Type Prediction Styles */
+/* || Header */
+.header-container{
+    width: 100%;
+}
+
+.header{
+    margin: 5vh auto 0;
+    width: 50%;
+    text-align: center;
+}
