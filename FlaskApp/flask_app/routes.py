@@ -10,7 +10,12 @@ import random
 import functools
 from . import socketio
 import pandas as pd
-import os
+import os, shutil
+import pickle
+from torchvision import datasets, transforms
+import torchvision.models as models
+import torch
+import io
 
 @app.route('/')
 def root():
@@ -24,6 +29,15 @@ def pokemontypeprediction():
 
 @app.route('/pokemonclassificationresult', methods = ['POST'])
 def pokemonclassificationresult():
+    for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
     # check if the post request has the file part
     if 'image' not in request.files:
         flash('No file part')
@@ -37,7 +51,7 @@ def pokemonclassificationresult():
     if file:
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return render_template('pokemonclassificationresult.html')
+        return render_template('pokemonclassificationresult.html', prediction=make_prediction())
 
 @app.route("/static/<path:path>")
 def static_dir(path):
@@ -50,3 +64,24 @@ def add_header(r):
     r.headers["Pragma"] = "no-cache"
     r.headers["Expires"] = "0"
     return r
+
+class CPU_Unpickler(pickle.Unpickler):
+    def find_class(self, module, name):
+        if module == 'torch.storage' and name == '_load_from_bytes':
+            return lambda b: torch.load(io.BytesIO(b), map_location='cpu')
+        else:
+            return super().find_class(module, name)
+
+def make_prediction():
+    with open('flask_app/static/models/resnet_pokemon_image_classifier_model.pkl', 'rb') as file:
+        class_names = ['Bug', 'Dark', 'Dragon', 'Electric', 'Fairy', 'Fighting', 'Fire', 'Flying', 'Ghost', 'Grass', 'Ground', 'Ice', 'Normal', 'Poison', 'Psychic', 'Rock', 'Steel', 'Water']
+        resnet152 = CPU_Unpickler(file).load()
+        data_dir = app.config['UPLOAD_FOLDER'][:app.config['UPLOAD_FOLDER'].rfind('/')]
+
+        transform = transforms.Compose([transforms.Resize((256, 256)), transforms.ToTensor()])
+        test_data = datasets.ImageFolder(data_dir, transform=transform)
+        X, y = test_data[0]
+        y_pred = resnet152(X.to("cpu")[None, ...])
+        y_pred = y_pred.argmax(1)
+        return class_names[y_pred]
+

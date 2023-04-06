@@ -1,7 +1,7 @@
 # Access instance using `docker exec -it pokemon-type-prediction-app bash`
 
 # Instantiate Ubuntu 20.04
-FROM ubuntu:20.04
+FROM nvidia/cuda:12.1.0-base-ubuntu20.04
 
 # Update Ubuntu Software repository
 RUN apt update
@@ -21,6 +21,7 @@ COPY . /app
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
 
 # Open ports, set environment variables, start gunicorn.
 EXPOSE 8080 

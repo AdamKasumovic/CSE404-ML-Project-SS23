@@ -17,7 +17,7 @@ def create_app(debug=False):
 
 	# This will prevent issues with cached static files
 	app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-	app.config['UPLOAD_FOLDER'] = 'flask_app/static/main/input_images'
+	app.config['UPLOAD_FOLDER'] = 'flask_app/static/main/input_images/container'
 	app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 	app.debug = debug
 	# The secret key is used to cryptographically-sign the cookies used for storing the session data.
