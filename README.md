@@ -12,7 +12,7 @@ The data includes the
 [popular Kaggle Pokemon](https://www.kaggle.com/datasets/abcsds/pokemon) dataset, although it was manually improved to have the remaining Pokemon stats from Bulbapedia as well as cleaned of erroneous types.
 
 Pokemon images were scraped from [PokemonDB's pokedex](https://pokemondb.net/pokedex/national).
-Many more additional Pokemon images were downloaded from a [Kaggle dataset](https://www.kaggle.com/datasets/lantian773030/pokemonclassification).
+Many more additional Pokemon images (all from Generation I) were downloaded from a [Kaggle dataset](https://www.kaggle.com/datasets/lantian773030/pokemonclassification).
 
 Image data organizing was performed using Python scripts in the *utils* folder.
 
