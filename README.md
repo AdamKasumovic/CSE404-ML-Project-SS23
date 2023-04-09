@@ -29,7 +29,7 @@ Image data organizing was performed using Python scripts in the *utils* folder.
         Bash or *NIX environment for running Shell scripts and Git.
     </li>
     <li>
-        Ideally a CUDA-enabled GPU.
+        A CUDA-enabled GPU and a version of Pytorch such that CUDA is enabled in it and the GPU will be used for models.
     </li>
 </ul>
 
