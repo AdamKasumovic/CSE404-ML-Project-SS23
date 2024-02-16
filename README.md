@@ -2,7 +2,7 @@
 
 Here is a demo web app that uses our model to classify pictures of [Generation I Pokemon](https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon).
 
-[https://pokemon-fa7zab3wva-ue.a.run.app](https://pokemon-fa7zab3wva-ue.a.run.app)
+[//]: # (https://pokemon-fa7zab3wva-ue.a.run.app)
 
 The report summary for Step 5 is at the bottom of this README.
 
