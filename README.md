@@ -1,6 +1,6 @@
 # CSE404-ML-Project-SS23: Pokemon Type Classification
 
-Here is a demo web app that uses our model to classify pictures of [Generation I Pokemon](https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon).
+[//]: # (Here is a demo web app that uses our model to classify pictures of Gen I Pokemon: https://en.wikipedia.org/wiki/List_of_generation_I_Pok%C3%A9mon)
 
 [//]: # (https://pokemon-fa7zab3wva-ue.a.run.app)
 
